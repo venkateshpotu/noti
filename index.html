@@ -12,25 +12,25 @@
         <div id="err"></div>
         <!-- The core Firebase JS SDK is always required and must be listed first -->
         <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
-
         <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-messaging.js"></script>
         <script>
             MsgElem = document.getElementById('msg');
             TokenElem = document.getElementById('token');
             NotisElem = document.getElementById('notis');
             ErrElem = document.getElementById('err');
-
-            // TODO: Replace firebaseConfig you get from Firebase Console
-            var firebaseConfig = {
-                apiKey: "AIzaSyCGzPm_gySTNvjQwlmUbHyH8FVybs60GCk",
-                authDomain: "notification-6ebd4.firebaseapp.com",
-                projectId: "notification-6ebd4",
-                storageBucket: "notification-6ebd4.appspot.com",
-                messagingSenderId: "52208214395",
-                appId: "1:52208214395:web:8bca9a0a33272c67301dde",
-                measurementId: "G-WH9149W6H9"
-            };
-            firebase.initializeApp(firebaseConfig);
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyCGzPm_gySTNvjQwlmUbHyH8FVybs60GCk",
+    authDomain: "notification-6ebd4.firebaseapp.com",
+    projectId: "notification-6ebd4",
+    storageBucket: "notification-6ebd4.appspot.com",
+    messagingSenderId: "52208214395",
+    appId: "1:52208214395:web:8bca9a0a33272c67301dde",
+    measurementId: "G-WH9149W6H9"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
             
 
             const messaging = firebase.messaging();
@@ -56,7 +56,6 @@
                 console.log('Message received. ', payload);
                 NotisElem.innerHTML =
                     NotisElem.innerHTML + JSON.stringify(payload);
-
                 if (enableForegroundNotification) {
                     let notification = payload.notification;
                     navigator.serviceWorker
