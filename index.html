@@ -89,7 +89,6 @@
 
             let enableForegroundNotification = true;
             messaging.onMessage(function (payload) {
-                alert(payload)
                 console.log('Message received. ', payload);
                 NotisElem.innerHTML =
                     NotisElem.innerHTML + JSON.stringify(payload);
@@ -103,5 +102,17 @@
                 }
             });
         </script>
+                                        
+<!-- PushAlert -->
+<script type="text/javascript">
+    (function(d, t) {
+            var g = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+            g.src = "https://cdn.pushalert.co/integrate_f9fd4ccd5c641dff795c7e14a6dc4f34.js";
+            s.parentNode.insertBefore(g, s);
+    }(document, "script"));
+</script>
+<!-- End PushAlert -->
+                
     </body>
 </html>
