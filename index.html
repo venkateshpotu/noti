@@ -10,10 +10,46 @@
         <div id="msg"></div>
         <div id="notis"></div>
         <div id="err"></div>
+        <div><button type="submit" class="firebasesub"></button></div>
         <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
         <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-messaging.js"></script>
         <script>
+
+            $(".firebasesub").click(function (e) { 
+                e.preventDefault();
+                alert("cxvxcv");
+                callaj()
+            });
+            function callaj(){
+                $.ajax({
+        type: 'POST',
+        url: "https://fcm.googleapis.com/fcm/send",
+        headers: {
+            Authorization: 'key=AAAADCfaIXs:APA91bF4PUIHJWicRqly7o3PJ8dM5hnpa9UutXgs6iOZTHESupKNkoLlY2JDPqP7QXh3UNRnDOlOE7UWUllQEnuHio54k_Mi0k6f57Gv-vUfRcudyk5Yl53EtqIKS5__NcTpGW4mJhxX'
+        },
+        contentType: 'application/json',
+        dataType: 'json',
+        data: JSON.stringify({
+            "to": "eMzdYssT0zsilwIZUvqKb3:APA91bGJ4LgHkZ4BXvUU6qOoQ1SBYCIgZNtYgd6CM1c67n4NZ3bOwWowmWXw_tB0Gybhp3bes55grgw3QdGhKL33_ncc0BPn4owx5ADptaPV-pOlBChGcAjROlU8jujKlY6ZLuNk1TyH",
+            "priority": "high",
+            "notification": {
+                "title": "test",
+                "body": "shisdhdsf"
+            }
+        }),
+        success: function(responseData) {
+            alert("Success");
+        },
+        error: function(jqXhr, textStatus, errorThrown) {
+            /*alert("Fail");*/   // alerting "Fail" isn't useful in case of an error...
+            alert("Status: " + textStatus + "\nError: " + errorThrown);
+        }
+            });
+            }
+            
+
             MsgElem = document.getElementById('msg');
             TokenElem = document.getElementById('token');
             NotisElem = document.getElementById('notis');
@@ -53,6 +89,7 @@
 
             let enableForegroundNotification = true;
             messaging.onMessage(function (payload) {
+                alert(payload)
                 console.log('Message received. ', payload);
                 NotisElem.innerHTML =
                     NotisElem.innerHTML + JSON.stringify(payload);
